@@ -30,4 +30,4 @@ I'm open to collaborations and internship opportunities! If you have ideas, want
 
 🌐 LinkedIn: [Vansh Kashyap](https://www.linkedin.com/in/vansh-kashyap-b91886289) 🌐
 
-## Enjoy the Game and Happy Coding! 🚀
+Enjoy the Game and Happy Coding 🚀
