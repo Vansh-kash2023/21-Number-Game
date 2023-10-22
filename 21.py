@@ -1,4 +1,4 @@
-# Python code to play 21 Number game
+import random
 
 # returns the nearest multiple to 4
 def nearestMultiple(num):
@@ -11,7 +11,7 @@ def nearestMultiple(num):
 def lose1():
     print("\n\nYOU LOSE !")
     print("Better luck next time !")
-    return False
+    return True
 
 # checks whether the numbers are consecutive
 def check(xyz):
@@ -35,18 +35,14 @@ def start1():
         if chance.lower() == "f":
             while True:
                 if last == 21:
-                    lose1()
-                else:
-                    print("\nYour Turn.")
-                    print("\nHow many numbers do you wish to enter?")
-                    inp = int(input('> '))
-                    
-                    if inp > 0 and inp <= 3:
-                        comp = 4 - inp
-                    else:
-                        print("Wrong input. You are disqualified from the game.")
-                        return False
-            
+                    return lose1()
+
+                print("\nYour Turn.")
+                print("\nHow many numbers do you wish to enter (1-4)?")
+                inp = int(input('> '))
+                
+                if inp > 0 and inp <= 4:
+                    comp = random.randint(1, 4)  # Randomly choose the number of numbers for the computer
                     i = 1
 
                     print("Now enter the values")
@@ -61,11 +57,10 @@ def start1():
                     # store the last element of xyz.
                     last = xyz[-1]
                     
-                    # checks whether the input
-                    # numbers are consecutive
+                    # checks whether the input numbers are consecutive
                     if check(xyz) == True:
                         if last == 21:
-                            lose1()
+                            return lose1()
                         else:
                             # "Computer's turn."
                             j = 1
@@ -77,11 +72,14 @@ def start1():
                             last = xyz[-1]
                     else:
                         print("\nYou did not input consecutive integers.")
-                        return False
+                        return True
+                else:
+                    print("Invalid input. You can enter 1 to 4 numbers at a time.")
+                    return True
                         
         # player takes the second chance
         elif chance.lower() == "s":
-            comp = 1
+            comp = random.randint(1, 4)  # Randomly choose the number of numbers for the computer
             last = 0
             while last < 21:
                 # "Computer's turn"
@@ -92,16 +90,16 @@ def start1():
                 print("Order of inputs after computer's turn is:")
                 print(xyz)
                 if xyz[-1] == 21:
-                    lose1()
+                    return lose1()
                 else:
                     print("\nYour turn.")
-                    print("\nHow many numbers do you wish to enter?")
+                    print("\nHow many numbers do you wish to enter (1-4)?")
                     inp = input('> ')
                     try:
                         inp = int(inp)
                     except ValueError:
                         print("Invalid input. Please enter an integer.")
-                        return False
+                        return True
                         
                     i = 1
                     print("Enter your values")
@@ -115,22 +113,20 @@ def start1():
                     last = xyz[-1]
                     if check(xyz) == True:
                         near = nearestMultiple(last)
-                        comp = near - last
-                        if comp == 4:
-                            comp = 3
+                        comp = random.randint(1, 4)  # Randomly choose the number of numbers for the computer
                     else:
                         # if inputs are not consecutive
                         # automatically disqualified
                         print("\nYou did not input consecutive integers.")
-                        return False
-            
+                        return True
+
             print("\n\nCONGRATULATIONS !!!")
             print("YOU WON !")
             return True
-            
+
         else:
             print("wrong choice")
-                        
+
 game = True
 while game:
     print("Player 2 is Computer.")
